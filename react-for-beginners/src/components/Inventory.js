@@ -25,6 +25,16 @@ class Inventory extends React.Component {
     });
   }
 
+  // Use property initializer method
+  static propTypes = {
+    fishes: React.PropTypes.object.isRequired,
+    addFish: React.PropTypes.func.isRequired,
+    updateFish: React.PropTypes.func.isRequired,
+    removeFish: React.PropTypes.func.isRequired,
+    loadSamples: React.PropTypes.func.isRequired,
+    storeId: React.PropTypes.string.isRequired
+  };
+
   handleChange(e, key) {
     const fish = this.props.fishes[key];
 
@@ -131,14 +141,5 @@ class Inventory extends React.Component {
     );
   }
 }
-
-Inventory.propTypes = {
-  fishes: React.PropTypes.object.isRequired,
-  addFish: React.PropTypes.func.isRequired,
-  updateFish: React.PropTypes.func.isRequired,
-  removeFish: React.PropTypes.func.isRequired,
-  loadSamples: React.PropTypes.func.isRequired,
-  storeId: React.PropTypes.string.isRequired
-};
 
 export default Inventory;
