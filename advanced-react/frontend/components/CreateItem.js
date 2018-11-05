@@ -41,7 +41,26 @@ class CreateItem extends Component {
     const {name, type, value} = e.target;
     const val = type === 'number' ? parseFloat(value) : value;
     this.setState({[name]: val});
-  }
+  };
+
+  uploadFile = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'sickfits');
+
+    const res = await fetch('https://api.cloudinary.com/v1_1/dfzm8rgwu/image/upload', {
+      method: 'POST',
+      body: data,
+    });
+
+    const file = await res.json();
+
+    this.setState({
+      image: file.secure_url,
+      largeImage: file.eager[0].secure_url,
+    })
+  };
 
   render() {
     return (
@@ -64,19 +83,25 @@ class CreateItem extends Component {
               <h2>Sell an Item</h2>
               <Error error={error} />
               <fieldset disabled={loading} aria-busy={loading}>
+                <label htmlFor="file">
+                  Image
+                  <input type="file" id="file" name="file" placeholder="Upload an image" onChange={this.uploadFile} required/>
+                  {this.state.image && <img width="200" src={this.state.image} alt="Upload Preview"/>}
+                </label>
+
                 <label htmlFor="title">
                   Title
-                  <input type="text" id="title" name="title" placeholder="title" value={this.state.title} onChange={this.handleChange} required/>
+                  <input type="text" id="title" name="title" placeholder="Title" value={this.state.title} onChange={this.handleChange} required/>
                 </label>
 
                 <label htmlFor="price">
                   Price
-                  <input type="price" id="price" name="price" placeholder="price" value={this.state.price} onChange={this.handleChange} required/>
+                  <input type="price" id="price" name="price" placeholder="Price" value={this.state.price} onChange={this.handleChange} required/>
                 </label>
 
                 <label htmlFor="description">
                   Description
-                  <textarea type="text" id="description" name="description" placeholder="description" value={this.state.description} onChange={this.handleChange} required/>
+                  <textarea type="text" id="description" name="description" placeholder="Description" value={this.state.description} onChange={this.handleChange} required/>
                 </label>
 
                 <button type="submit">Submit</button>
