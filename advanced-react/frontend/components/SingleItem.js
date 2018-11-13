@@ -1,10 +1,10 @@
-import {Query} from 'react-apollo';
-import gql from 'graphql-tag';
-import Head from 'next/head';
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import Head from "next/head";
+import React, { Component } from "react";
+import styled from "styled-components";
 
-import Error from './ErrorMessage';
+import Error from "./ErrorMessage";
 
 const SingleItemStyles = styled.div`
   max-width: 1200px;
@@ -28,7 +28,7 @@ const SingleItemStyles = styled.div`
 
 const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY($id: ID!) {
-    item(where: {id: $id}) {
+    item(where: { id: $id }) {
       id
       title
       description
@@ -40,9 +40,9 @@ const SINGLE_ITEM_QUERY = gql`
 class SingleItem extends Component {
   render() {
     return (
-      <Query query={SINGLE_ITEM_QUERY} variables={{id: this.props.id}}>
-        {({error, loading, data}) => {
-          if (error) return <Error error={error}/>;
+      <Query query={SINGLE_ITEM_QUERY} variables={{ id: this.props.id }}>
+        {({ error, loading, data }) => {
+          if (error) return <Error error={error} />;
           if (loading) return <p>Loading...</p>;
           if (!data.item) return <p>No item found.</p>;
 
@@ -53,7 +53,7 @@ class SingleItem extends Component {
               <Head>
                 <title>Sick Fits | {item.title}</title>
               </Head>
-              <img src={item.largeImage} alt={item.title}/>
+              <img src={item.largeImage} alt={item.title} />
               <div className="details">
                 <h2>Viewing {item.title}</h2>
                 <p>{item.description}</p>

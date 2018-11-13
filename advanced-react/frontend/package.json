@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "test": "NODE_ENV=test jest --watch",
+    "pretty": "prettier --write \"components/**/*.js\" \"pages/**/*.js\"",
     "heroku-postbuild": "next build"
   },
   "author": "",

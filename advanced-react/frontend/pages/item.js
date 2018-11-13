@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import SingleItem from '../components/SingleItem';
+import SingleItem from "../components/SingleItem";
 
-const Item = (props) => (
+const Item = props => (
   <div>
-    <SingleItem id={props.query.id}/>
+    <SingleItem id={props.query.id} />
   </div>
 );
 

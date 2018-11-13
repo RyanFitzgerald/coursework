@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import Items from '../components/Items';
+import Items from "../components/Items";
 
-const Home = (props) => (
+const Home = props => (
   <div>
     <Items page={parseFloat(props.query.page) || 1} />
   </div>

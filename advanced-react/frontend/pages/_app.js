@@ -1,12 +1,12 @@
-import {ApolloProvider} from 'react-apollo';
-import React from 'react';
-import App, { Container } from 'next/app';
+import { ApolloProvider } from "react-apollo";
+import React from "react";
+import App, { Container } from "next/app";
 
-import Page from '../components/Page';
-import withData from '../lib/withData';
+import Page from "../components/Page";
+import withData from "../lib/withData";
 
 class MyApp extends App {
-  static async getInitialProps({Component, ctx}) {
+  static async getInitialProps({ Component, ctx }) {
     let pageProps = {};
 
     if (Component.getInitialProps) {
@@ -16,7 +16,7 @@ class MyApp extends App {
     // Exposes the query to the user
     pageProps.query = ctx.query;
 
-    return {pageProps};
+    return { pageProps };
   }
 
   render() {
@@ -30,7 +30,7 @@ class MyApp extends App {
           </Page>
         </ApolloProvider>
       </Container>
-    )
+    );
   }
 }
 

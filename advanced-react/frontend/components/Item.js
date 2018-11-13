@@ -1,36 +1,40 @@
-import Link from 'next/link';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import Link from "next/link";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
 
-import formatMoney from '../lib/formatMoney';
+import formatMoney from "../lib/formatMoney";
 
-import DeleteItem from './DeleteItem';
-import ItemStyles from './styles/ItemStyles';
-import PriceTag from './styles/PriceTag';
-import Title from './styles/Title';
+import DeleteItem from "./DeleteItem";
+import ItemStyles from "./styles/ItemStyles";
+import PriceTag from "./styles/PriceTag";
+import Title from "./styles/Title";
 
 class Item extends Component {
   render() {
-    const {item} = this.props;
+    const { item } = this.props;
 
     return (
       <ItemStyles>
         {item.image && <img src={item.image} alt={item.title} />}
         <Title>
-          <Link href={{
-            pathname: '/item',
-            query: {id: item.id}
-          }}>
+          <Link
+            href={{
+              pathname: "/item",
+              query: { id: item.id },
+            }}
+          >
             <a>{item.title}</a>
           </Link>
         </Title>
         <PriceTag>{formatMoney(item.price)}</PriceTag>
         <p>{item.description}</p>
         <div className="buttonList">
-          <Link href={{
-            pathname: 'update',
-            query: {id:item.id}
-          }}>
+          <Link
+            href={{
+              pathname: "update",
+              query: { id: item.id },
+            }}
+          >
             <a>Edit</a>
           </Link>
           <button>Add To Cart</button>
@@ -42,7 +46,7 @@ class Item extends Component {
 }
 
 Item.propTypes = {
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
 };
 
 export default Item;
