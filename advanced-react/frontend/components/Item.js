@@ -4,6 +4,7 @@ import React, { Component } from "react";
 
 import formatMoney from "../lib/formatMoney";
 
+import AddToCart from "./AddToCart";
 import DeleteItem from "./DeleteItem";
 import ItemStyles from "./styles/ItemStyles";
 import PriceTag from "./styles/PriceTag";
@@ -37,7 +38,7 @@ class Item extends Component {
           >
             <a>Edit</a>
           </Link>
-          <button>Add To Cart</button>
+          <AddToCart id={item.id} />
           <DeleteItem id={item.id}>Delete Item</DeleteItem>
         </div>
       </ItemStyles>
